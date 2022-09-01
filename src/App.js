@@ -29,6 +29,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input
+          type="search"
+          placeholder="search monster"
+          onChange={(event) => {
+            
+            // using search string but making it non case sensitive
+            const searchString = event.target.value.toLowerCase();
+            const filteredMonsters = this.state.monsters.filter((monster) => {
+              return monster.name.toLowerCase().includes(searchString);
+            });
+
+            this.setState(() => {
+              return {monsters: filteredMonsters}
+            });
+
+          }}
+        />
         {this.state.monsters.map((monster) => {
           return (
             <div key={monster.id}>
